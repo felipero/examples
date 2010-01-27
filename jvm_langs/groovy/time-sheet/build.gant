@@ -1,0 +1,98 @@
+final srcDir = 'src/'
+final resourcesDir = 'resources/'
+final testDir = 'tests/'
+final libDir = 'lib'
+
+final buildDir = 'target/'
+final classDir = buildDir + '/classes'
+final reportsDir = testDir + '/reports'
+
+final distDir = buildDir + '/dist'
+final docsDir = buildDir + '/docs'
+
+final jarFile = distDir + '/navywar.jar'
+
+ant.path(id:'lib') {
+    fileset(
+      dir: libDir,
+      includes: "**/*.jar"
+    )
+}
+
+ant.path(id: 'build.classpath') {
+    path(location: classDir)
+    path(refid: 'lib')
+}
+
+def groovyc = { srcdir, classdir ->
+   ant.taskdef ( name : 'groovyc' , classname : 'org.codehaus.groovy.ant.Groovyc' , classpathref : "build.classpath")
+   ant.groovyc(srcdir: srcdir, destdir: classdir) {
+     classpath(){
+       path(refid:"build.classpath")
+     }
+   }
+}
+
+target(clean: 'Clean all the required directories') {
+    def dirs = [classDir, distDir, buildDir]
+    dirs.each() { ant.delete(dir: it) }
+}
+
+target(initDirs: 'Create all the required directories') {
+    def dirs = [reportsDir, buildDir, classDir, distDir, docsDir, resourcesDir]
+    dirs.each() { ant.mkdir(dir: it) }
+}
+
+target(compile: 'Compile source to build directory.') {
+    depends(initDirs)
+
+    ant.javac(srcdir: srcDir, destdir: classDir)
+
+    groovyc(srcDir, classDir)    
+    ant.copy(todir:"${classDir}"){
+      fileset(dir:"${resourcesDir}")
+    }
+}
+
+target(test: 'Run the test suite for the code') {
+  depends("compile")
+
+  ant.taskdef(name:"easyb", classname:"org.easyb.ant.BehaviorRunnerTask"){
+    classpath(){
+      pathelement(location:"${libDir}/easyb-0.9.6.jar")
+    }
+  }
+
+  ant.easyb(failureProperty:"easyb.failed"){
+
+    classpath() {
+      path(refid:"build.classpath")
+      pathelement(location:"${libDir}/easyb-0.9.6.jar")
+      pathelement(location:"tests")
+    }
+
+    report(location: "${reportsDir}/easyb-report.html", format: "html")
+    report(location: "${reportsDir}/story-report.txt", format: "txtstory")
+    report(location: "${reportsDir}/specification-report.txt", format: "txtspecification")
+
+    behaviors(dir:testDir){
+      include(name:"**/*.story")
+      include(name:"**/*.specification")
+    }
+  }
+
+  ant.fail(if:"easyb.failed", message:"easyb specifications have failed")
+}
+
+target(jar: 'Jar up the code') {
+  depends(test)
+  ant.jar(destfile:distDir) {
+    include(name:"${libDir}/*.jar")
+  }
+  
+  ant.copy(todir:"${distDir}/lib"){
+    fileset(dir:"${libDir}")
+  }
+}
+
+setDefaultTarget("test")

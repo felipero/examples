@@ -1,0 +1,41 @@
+import net.fratech.timeSheet.*
+//import org.gmock.GMockController
+import groovy.mock.interceptor.*
+
+before "", {
+  //gmc = new GMockController()
+}
+
+/*it "should mock correctly", {
+
+    nome = "Anastácio"
+
+    mockDao = gmc.mock(DAO)
+    mockDao.save(nome).returns("Saved by mock")
+
+    mockFactory = gmc.mock(DAOFactory)
+    mockFactory.static.getDAO(DAO).returns( mockDao )
+    
+
+    ts = new TimeSheet()
+
+    gmc.play {
+        ts.dao().shouldBe null
+        //ts.register(nome).shouldBe "Saved by mock"
+    }
+}*/
+
+it "should mock by itself", {
+
+    daoMock = new MockFor(DAO)
+    daoMock.demand.save {nome -> "Saved by mock 2" }
+
+    daoFactoryMock = new MockFor(DAOFactory)
+    daoFactoryMock.demand.getDAO { clazz -> return daoMock.proxyDelegateInstance() }
+    
+    ts = new TimeSheet()
+
+    daoFactoryMock.use {
+        ts.register("Felipe").shouldBe "Saved by mock 2"
+    }
+}

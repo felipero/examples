@@ -1,0 +1,71 @@
+description "Testa o tabuleiro e suas operações"
+
+it "não deve aceitar criar o tabuleiro  quando indicar um tamanho menor que 4", {
+    ensureThrows(GroovyRuntimeException){
+        new Tabuleiro()
+    }
+
+    ensureThrows(IllegalArgumentException){
+        new Tabuleiro(1)
+    }
+
+    ensureThrows(IllegalArgumentException){
+        new Tabuleiro(3)
+    }
+
+    ensureThrows(IllegalArgumentException){
+        new Tabuleiro(0)
+    }
+}
+
+it "deve criar um tabuleiro quanto o tamanho indicado for maior que 4", {
+    tabuleiro = new Tabuleiro(4)
+    tabuleiro.shouldBeA Tabuleiro
+    new Tabuleiro(8)
+    new Tabuleiro(13)
+}
+
+it "nao deve criar um tabuleiro com tamanho maior que 20", {
+    ensureThrows(IllegalArgumentException){
+        new Tabuleiro(21)
+    }
+
+    ensureThrows(IllegalArgumentException){
+        new Tabuleiro(31)
+    }
+}
+
+it "deve criar a quantidade correta de celulas (o quadrado do tamanho)", {
+    tabuleiro = new Tabuleiro(5)
+    tabuleiro.celulas.size().shouldBe 25
+
+    tabuleiro = new Tabuleiro(6)
+    tabuleiro.celulas.size().shouldBe 36
+}
+
+it "deve criar a chave corretamente", {
+    tabuleiro = new Tabuleiro(4)
+    tabuleiro.criarChave(1,1).shouldBe "A:1"
+    tabuleiro.criarChave(2,1).shouldBe "B:1"
+    tabuleiro.criarChave(1,2).shouldBe "A:2"
+    tabuleiro.criarChave(4,4).shouldBe "D:4"
+}
+
+it "deve dar nomear as celulas com letras e numeros (A:1)", {
+    tabuleiro = new Tabuleiro(4)
+    tabuleiro.celulas.containsKey("A:1").shouldBe true
+    tabuleiro.celulas.containsKey("D:4").shouldBe true
+    tabuleiro.celulas.containsKey("C:3").shouldBe true
+
+    tabuleiro.celulas.containsKey("D:5").shouldBe false
+    tabuleiro.celulas.containsKey("E:1").shouldBe false
+    tabuleiro.celulas.containsKey("A:5").shouldBe false
+    tabuleiro.celulas.containsKey("E:4").shouldBe false
+}
+
+it "deve inserir um navio de uma celula na celula indicada", {
+    tabuleiro = new Tabuleiro(7)
+    tabuleiro.inserirNavio("F:5", "NavioDeUmaCelula")
+    tabuleiro.celulas["F:5"].shouldBe "NavioDeUmaCelula"
+}
+

@@ -1,0 +1,12 @@
+7 specifications executed successfully.
+
+  Specification: tabuleiro test
+   Testa o tabuleiro e suas operações
+
+    it não deve aceitar criar o tabuleiro  quando indicar um tamanho menor que 4
+    it deve criar um tabuleiro quanto o tamanho indicado for maior que 4
+    it nao deve criar um tabuleiro com tamanho maior que 20
+    it deve criar a quantidade correta de celulas (o quadrado do tamanho)
+    it deve criar a chave corretamente
+    it deve dar nomear as celulas com letras e numeros (A:1)
+    it deve inserir um navio de uma celula na celula indicada

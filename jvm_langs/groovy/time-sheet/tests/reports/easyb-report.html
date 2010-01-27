@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns='http://www.w3.org/1999/xhtml' xml:lang='en' lang='en'>
+<head>
+  <meta http-equiv='content-type' content='text/html; charset=utf-8'/>
+  <title>easyb-report</title>
+  <meta name='keywords' content='BDD, behavior driven development, java, java bdd, groovy, groovy bdd, groovy behavior driven development, java behavior driven development, ruby, rspec, easyb, easy bdd'/>
+  <meta name='description' content='easyb is story verification framework built in the spirit of behavior driven development.'/>
+  <link href='easyb_report.css' rel='stylesheet' type='text/css'/>
+  <script src='prototype.js' type='text/javascript'></script>
+  <script type='text/javascript'>
+    function showOnlyContent(contentDiv, linkId) {
+      $('Summaries').hide();
+      $('summary-menu-link').removeClassName('selected-menu-link');
+    
+      $('SpecificationsList').hide();
+      $('SpecificationsListPlain').hide();
+      $('specifications-list-menu-link').removeClassName('selected-menu-link');
+      $('specifications-list-plain-menu-link').removeClassName('selected-menu-link');
+    
+    
+      $(linkId).addClassName('selected-menu-link');
+      $(contentDiv).show();
+    }
+    function toggleScenariosForStory(storyNumber) {
+      $('scenarios_for_story_' + storyNumber).toggle();
+      return false;
+    }
+    function toggleComponentsForSpecification(specificationNumber) {
+      $('components_for_specification_' + specificationNumber).toggle();
+      return false;
+    }
+  </script>
+</head>
+<body>
+<!-- start header -->
+<div id='header'>
+  <h1>
+    <a href='http://www.easyb.org'>
+      <span>easyb</span>
+    </a>
+  </h1>
+  <h2>&nbsp;&nbsp; -- BDD in java can't get any easier</h2>
+</div>
+<!-- end header -->
+
+
+<!-- start page -->
+<div id='page'>
+  <!-- start content -->
+  <div id='content'>
+    <div class='post'>
+      <div class='entry'>
+        <div id='Summaries'>
+          <h2>Summary</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Behaviors</th>
+                <th>Failed</th>
+                <th>Pending</th>
+                <th>Time (sec)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class='primaryRow'>
+                <td>1</td>
+                <td class=''>0</td>
+                <td class=''>0</td>
+                <td>2.956</td>
+              </tr>
+            </tbody>
+          </table>
+          <h2>Stories Summary</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Stories</th>
+                <th>Scenarios</th>
+                <th>Failed</th>
+                <th>Pending</th>
+                <th>Time (sec)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class='primaryRow'>
+                <td>0</td>
+                <td>0</td>
+                <td class=''>0</td>
+                <td class=''>0</td>
+                <td>0.0</td>
+              </tr>
+            </tbody>
+          </table>
+          <h2>Specifications Summary</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Specifications</th>
+                <th>Failed</th>
+                <th>Pending</th>
+                <th>Time (sec)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class='primaryRow'>
+                <td>1</td>
+                <td class=''>0</td>
+                <td class=''>0</td>
+                <td>2.956</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        
+
+<div id='SpecificationsList' style='display:none;'>
+  <h2>Specifications List</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Specifications</th>
+        <th>Failed</th>
+        <th>Pending</th>
+        <th>Time (sec)</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      <tr class='primaryRow'>
+        <td>
+          
+            <a href="#" onclick="$('components_for_specification_' + 0).toggle(); return false;">time_sheet</a>
+          
+        </td>
+        <td>1</td>
+        <td class="">0</td>
+        <td class="">0</td>
+        <td>2.956</td>
+      </tr>
+
+      
+      <tr id='components_for_specification_0' class='componentsForSpecification' style='display:none;'>
+        <td colspan='5'>
+          <table class='componentsForSpecificationTable'>
+            <tbody>
+             
+              <tr>
+                <td>before </td>
+                <td class='' style='text-align:right;'></td>
+              </tr>
+              
+             
+              <tr>
+                <td>it should mock by itself</td>
+                <td class='stepResultSuccess' style='text-align:right;'>success</td>
+              </tr>
+              
+             
+            </tbody>
+          </table>
+        </td>
+      </tr>
+      
+      
+    </tbody>
+  </table>
+</div>
+
+
+
+<div id='SpecificationsListPlain' style='display:none;'>
+  <h2>Specifications Text</h2>
+  
+  <div>1 specification executed successfully.</div>
+  <div><br/><br/>&nbsp;&nbsp;Specification: time_sheet<br/>&nbsp;&nbsp;&nbsp;&nbsp;before <br/>&nbsp;&nbsp;&nbsp;&nbsp;it should mock by itself</div>
+</div>
+
+        
+      </div>
+    </div>
+
+  </div>
+  <!-- end content -->
+
+
+  <!-- start sidebar -->
+  <div id='sidebar'>
+    <ul>
+      <li>
+        <h2>Sections</h2>
+        <ul>
+          <li>
+            <a id='summary-menu-link' class='selected-menu-link' href='#' onclick='showOnlyContent("Summaries", "summary-menu-link")'>Summary</a>
+          </li>
+          
+          
+          <li>
+            <a id='specifications-list-menu-link' href='#' onclick='showOnlyContent("SpecificationsList", "specifications-list-menu-link")'>Specifications</a>
+          </li>
+          <li>
+            <a id='specifications-list-plain-menu-link' href='#' onclick='showOnlyContent("SpecificationsListPlain", "specifications-list-plain-menu-link")'>Specifications Text</a>
+          </li>
+          
+        </ul>
+      </li>
+    </ul>
+    <div style='clear: both;'>&nbsp;</div>
+  </div>
+  <!-- end sidebar -->
+
+</div>
+<!-- end page -->
+
+<div id='footer'/>
+</body>
+</html>
