@@ -1,11 +1,15 @@
 package net.fratech {
 
   package scala_intro {
-
+    import forJava.Phase
     import scala_intro.model.Module
 
     class Project  {
-      val module: Module
+      var phase: Module = new Phase
+
+      def start(m: Module) = {
+        phase = m
+      }
     }
 
     package model {
@@ -15,8 +19,9 @@ package net.fratech {
     }
 
     package forJava {
+      import scala_intro.model.Module
 
-      object Car
+      class Phase extends Module
 
     }
 
