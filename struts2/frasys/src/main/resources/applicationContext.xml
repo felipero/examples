@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC 
+	"-//SPRING//DTD BEAN//EN" 
+	"http://www.springframework.org/dtd/spring-beans.dtd">
+	
+<beans>
+
+	<bean id="project" class="net.fratech.frasys.view.actions.ProjectAction" singleton="false">
+        <property name="repository" ref="projectRepository"/>
+    </bean>
+
+	<bean id="user" class="net.fratech.frasys.view.actions.UserAction" singleton="false">
+		<property name="repository" ref="userRepository"/>
+	</bean>
+	
+	<bean id="userRepository" class="net.fratech.frasys.infrastructure.UserDecorator">
+		<property name="dao">
+			<bean name="GenericJPADAO" class="net.fratech.frasys.infrastructure.daos.GenericJPADAO">
+               <constructor-arg value="net.fratech.frasys.domain.User"/>
+           </bean>
+		</property>
+	</bean>
+	
+	<bean id="projectRepository" class="net.fratech.frasys.infrastructure.ProjectDecorator">
+		<property name="projectDao">
+			<bean name="GenericJPADAO" class="net.fratech.frasys.infrastructure.daos.GenericJPADAO">
+               <constructor-arg value="net.fratech.frasys.domain.Project"/>
+           </bean>
+		</property>
+		<property name="iterationDao">
+			<bean name="GenericJPADAO" class="net.fratech.frasys.infrastructure.daos.GenericJPADAO">
+               <constructor-arg value="net.fratech.frasys.domain.Iteration"/>
+           </bean>
+		</property>
+		<property name="itemDao">
+			<bean name="GenericJPADAO" class="net.fratech.frasys.infrastructure.daos.GenericJPADAO">
+               <constructor-arg value="net.fratech.frasys.domain.Item"/>
+           </bean>
+		</property>
+		<property name="taskDao">
+			<bean name="GenericJPADAO" class="net.fratech.frasys.infrastructure.daos.GenericJPADAO">
+               <constructor-arg value="net.fratech.frasys.domain.Task"/>
+           </bean>
+		</property>
+	</bean>
+	
+</beans>
+

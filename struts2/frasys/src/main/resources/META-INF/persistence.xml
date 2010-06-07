@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
+             version="1.0">
+    <persistence-unit name="frasys">
+    
+    	<class>net.fratech.frasys.domain.Project</class>
+        <class>net.fratech.frasys.domain.Iteration</class>
+        <class>net.fratech.frasys.domain.Item</class>
+        <class>net.fratech.frasys.domain.Task</class>
+        <class>net.fratech.frasys.domain.User</class>
+    
+    	<properties>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
+            <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
+            <property name="hibernate.connection.username" value="frasys"/>
+            <property name="hibernate.connection.password" value="frasys"/>
+            <property name="hibernate.connection.url" value="jdbc:postgresql:postgres:5432/postgres"/>
+            <property name="hibernate.hbm2ddl.auto" value="none"/>
+        </properties>
+    	
+    </persistence-unit>
+</persistence>

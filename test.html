@@ -1,0 +1,46 @@
+<style>
+
+div {
+  border: 1px solid blue;
+}
+
+#a {
+}
+
+#a, #a div {
+  border: 1px solid red;
+}
+
+.clearfix {
+    zoom: 1;
+  margin-top: 10px;
+}
+
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+</style>
+
+
+<div id="a"> <!-- float container -->
+
+  <div style="float:left; width:30%; height: 200px;"><p>Float content</p></div>
+
+  <p>Text not inside the float</p>
+
+<div style="clear:both;"></div>
+
+</div>
+
+<div class="clearfix"> <!-- float container -->
+
+  <div style="float:right; width:30%; height: 200px;"><p>Float content</p></div>
+
+  <p>Text not inside the float</p>
+
+</div>

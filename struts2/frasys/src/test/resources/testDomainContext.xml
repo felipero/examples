@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC	"-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+	<bean id="projectExample" class="net.fratech.frasys.domain.Project" singleton="false">
+        <property name="description" value="Projeto de Exemplo para uso em classes de teste"/>
+        <property name="location" value="Fratech"/>
+        <property name="name" value="OffShore Project"/>
+    </bean>
+
+    <bean id="iterationExample" class="net.fratech.frasys.domain.Iteration" singleton="false">
+        <property name="id" value="1"/>
+        <property name="name" value="Iteration"/>
+        <property name="project" ref="projectExample"/>
+    </bean>
+
+    <bean id="itemExample" class="net.fratech.frasys.domain.Item" singleton="false">
+        <property name="description" value="Descrição do Item de example"/>
+        <property name="iteration"  ref="iterationExample"/>
+        <property name="priority" value="3"/>
+    </bean>
+
+    <bean id="taskExample" class="net.fratech.frasys.domain.Task" singleton="false">
+        <property name="item" ref="itemExample"/>
+        <property name="location" value="Fratech Office"/>
+        <property name="name" value="Tarefa de Exemplo"/>
+        <property name="status" value="TODO"/>
+    </bean>
+
+	<bean id="userExample" class="net.fratech.frasys.domain.User" singleton="false">
+        <property name="name" value="Usuário"/>
+        <property name="login" value="loginUser1"/>
+        <property name="password" value="password"/>
+        <property name="role" value="ADMIN"/>
+        <property name="address" ref="addressExample"/>
+    </bean>
+
+    <bean id="addressExample" class="net.fratech.frasys.domain.Address">
+        <property name="city" value="SBO"/>
+        <property name="state" value="SP"/>
+        <property name="street" value="Rua Eusébio Matoso Coutinho Jacutinga Jagunçu, 232 - Bairro do coco mole e molhado"/>
+    </bean>
+</beans>
