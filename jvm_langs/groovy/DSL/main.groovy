@@ -9,7 +9,7 @@ ${dslDef}
 """
 
 orders.eachWithIndex {order, index ->
-    script += """\n acceptOrder(${index + 1}) { $order } \n"""
+    script += """\n imprimir(${index + 1}) { $order } \n"""
 }
 
 new GroovyShell().evaluate(script)
