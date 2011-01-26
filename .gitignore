@@ -2,3 +2,7 @@
 *.iml
 target/
 dddsample-1.1.0/
+.metadata/
+.project
+.classpath
+.settings
