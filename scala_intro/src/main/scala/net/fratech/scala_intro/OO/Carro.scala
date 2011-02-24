@@ -18,11 +18,11 @@ object MeuCarro {
    
 }
 
-//MeuCarro.iniciar
-//MeuCarro mover
-//val c = MeuCarro
-//c iniciar
-//c mover
+MeuCarro.iniciar
+MeuCarro mover
+val c = MeuCarro
+c iniciar
+c mover
 
 trait Veiculo {
   def iniciar = {
